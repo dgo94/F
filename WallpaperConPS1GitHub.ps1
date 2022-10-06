@@ -326,7 +326,7 @@ Else {
     New-ItemProperty -Path "HKCU:\Control Panel\Desktop" -Name TileWallpaper -PropertyType String -Value 0 -Force
  
 }
- 
+ <#
 Add-Type -TypeDefinition @" 
 using System; 
 using System.Runtime.InteropServices;
@@ -352,6 +352,8 @@ public class Params
 
 #----------------------------------------------------------------------------------------------------
 
+
+#>
 function clean-exfil {
 
 <#
