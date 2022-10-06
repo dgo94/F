@@ -184,7 +184,11 @@ Foreach($WLANProfileName in $WLANProfileNames){
     try{
         $WLANProfilePassword = (((netsh.exe wlan show profiles name="$WLANProfileName" key=clear | select-string -Pattern "Key Content") -split ":")[1]).Trim()
     }Catch{
-        $WLANProfilePassword = "The password is not stored in this profile"
+    	try{
+        	$WLANProfilePassword = (((netsh.exe wlan show profiles name="$WLANProfileName" key=clear | select-string -Pattern "Contenido de la clave") -split ":")[1]).Trim()
+    	}Catch{
+        	$WLANProfilePassword = "The password is not stored in this profile"
+	}
     }
 
     #Build the object and add this to an array
